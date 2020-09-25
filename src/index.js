@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
+import BoxComponent from './BoxComponent';
 import * as serviceWorker from './serviceWorker';
+import 'tachyons';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BoxComponent greeting={'Inner property' + ' concat'}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
