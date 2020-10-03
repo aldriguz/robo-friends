@@ -1,51 +1,51 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
-//import { robots } from './robots';
 import './App.css';
+import { requestRobots, setSearchField } from '../actions';
+
+
+const mapStateToProps = state => {
+    return {
+        searchField: state.searchRobots.searchField,
+        robots: state.requestRobots.robots,
+        isPending: state.requestRobots.isPending,
+        error: state.requestRobots.error
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+     return {
+         onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+         onRequestRobots: () => dispatch(requestRobots())
+     }
+}
 
 
 class App extends Component {
-    constructor(){
-        super();
-        this.state = {
-            robots: [],
-            searchField: ''
-        }
-
-        console.log('constructor');
-    }
-
-
-    componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(users => this.setState({robots: users}));
-        
-        console.log('componentDidMount');
-    }
-
-    //before: onSearchChange(event){} as method
-    onSearchChange = (event) => {              
-        this.setState({ searchField: event.target.value});                  
+    componentDidMount() {        
+        this.props.onRequestRobots();
     }
 
     render(){
-        const {robots, searchField} = this.state;
+        const {searchField, onSearchChange, robots, isPending, error} = this.props;
         
         const filteredRobots = robots.filter(robot =>{ 
             return robot.name.toLowerCase().includes(searchField.toLowerCase());
         });
-        console.log('render');
-        if(!robots.length){
-            return <h1>Loading...</h1>
-        }else{
-            return (
+        
+        if(!isPending && error !== '')
+            return <h1>An error has ocurred</h1>
+
+        return isPending ?
+            <h1>Loading</h1> : 
+           (               
                 <div className='tc'>
                     <h1 className='f1'>Robofriends</h1>
-                    <SearchBox searchChange={this.onSearchChange}/>
+                    <SearchBox searchChange={onSearchChange}/>
                     <Scroll>
                         <ErrorBoundry>
                             <CardList robots={filteredRobots} />
@@ -54,10 +54,8 @@ class App extends Component {
                     
                 </div>
             );
-        }
-        
     }
 }
 
-export default App;
-
+//connect returns another function that executes App as a parameter
+export default connect(mapStateToProps, mapDispatchToProps)(App);
