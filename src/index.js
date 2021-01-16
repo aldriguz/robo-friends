@@ -12,14 +12,23 @@ import 'tachyons';
 
 const logger = createLogger();
 const rootReducer = combineReducers({searchRobots, requestRobots});
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
+/*
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>    
   </React.StrictMode>,
+  document.getElementById('root')
+);
+*/
+
+ReactDOM.render(
+  <Provider store={store}>
+      <App />
+  </Provider>,
   document.getElementById('root')
 );
 
