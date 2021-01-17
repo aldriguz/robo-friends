@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class CounterButton extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             count: 0
         }
@@ -10,10 +10,10 @@ class CounterButton extends Component {
 
     //with this we make sure component will not update even if parent component is updated
     shouldComponentUpdate(nextProps, nextState) {        
-        if(this.state.count !== nextProps.count){
+        if(this.state.count !== nextState.count){
             return true;
         }
-        return false;
+        return false; 
     }
 
     updateCount = () => {
@@ -24,9 +24,13 @@ class CounterButton extends Component {
     }
     
     render() {
-        console.log('CounterButton');
+        //console.log('CounterButton');
         return (
-            <button color={this.props.color} onClick={this.updateCount}>
+            <button 
+                id='counter'    
+                color={this.props.color} 
+                onClick={this.updateCount}
+            >
                 Count: {this.state.count}
             </button>    
         )

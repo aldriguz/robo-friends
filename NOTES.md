@@ -18,3 +18,29 @@ metadata, icons, splash screen and other details to make like an App
 
 * Service Worker
 a background service that runs other staff
+
+# Testing
+
+## Command
+
+```
+npm test
+```
+
+
+## Installing library enzyme
+
+```
+npm i --save-dev enzyme enzyme-adapter-react-16
+```
+
+## Snapshot testing 
+
+If you want to update your snapshots go to "see more" when running tests
+
+
+## Show coverage 
+
+```
+npm test -- --coverage --watchAll
+```

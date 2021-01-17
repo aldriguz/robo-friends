@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test if Card component has been rendered 1`] = `
+<Fragment>
+  <Card
+    email="jhon@email.com"
+    id={1}
+    key="0"
+    name="Jhon Snow"
+  />
+</Fragment>
+`;
