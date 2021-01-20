@@ -44,3 +44,18 @@ If you want to update your snapshots go to "see more" when running tests
 ```
 npm test -- --coverage --watchAll
 ```
+
+# Security package - nsp
+
+```
+npm install -g nsp
+```
+
+Run this coomand to check your project
+```
+nsp check
+```
+
+# Security package - snyk
+
+
