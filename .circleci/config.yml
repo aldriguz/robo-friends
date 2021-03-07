@@ -14,7 +14,7 @@ jobs:
       - run: echo "Double trouble"
 workflows:
   version: 2
-    wf-1:
-      jobs:
-        - build-1
-        - build-2
+  wf-1:
+    jobs:
+      - build-1
+      - build-2
