@@ -16,7 +16,7 @@ jobs:
       - run: echo "testing like crazy!"
       - run: npm install
       - run: npm run test
-  extra:
+  hithere:
     docker:
       - image: circleci/node:latest
     steps:
@@ -27,7 +27,7 @@ workflows:
   publish:
     jobs:
       - build
-      - extra
+      - hithere
       - test:
         requires:
-          - extra # extra need to succeed to run test job      
+          - hithere # hithere need to succeed to run test job      
