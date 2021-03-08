@@ -9,14 +9,19 @@ class CounterButton2 extends Component {
   }
 
   //with this we make sure component will not update even if parent component is updated
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate      (nextProps, nextState) {
     if (this.state.count !== nextState.count) {
       return true;
     }
     return false;
   }
 
-  updateCount = () => {
+
+
+
+
+
+  updateCount =    () => {
     //improved way to update, why? I don´t know xD
     this.setState((state) => {
       return { count: state.count + 1 };
